@@ -1,15 +1,24 @@
 import { Component, ElementRef, OnInit, OnDestroy, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+export class Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
 @Component({
   imports: [RouterOutlet],
   standalone: true,
   template:
-    '<div>{{ componentName }} Lifecycle Component - {{ componentData }}</div>',
-  selector: 'app-third',
+    '<div>{{ componentName }} Lifecycle Component - {{ componentData.name }} - {{ componentData.age }}</div>',
+  selector: 'Practice',
 })
 export class ThirdComponent implements OnInit, OnDestroy {
-  @Input() componentData: string = '';
+  @Input() componentData: Person = new Person('', 0);
   componentName: string = '';
 
   constructor(private elementRef: ElementRef) {}
@@ -17,7 +26,7 @@ export class ThirdComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.componentName = this.elementRef.nativeElement.tagName.toLowerCase();
     alert(
-      `Entering ${this.componentName} Component with data: ${this.componentData}`
+      `Entering ${this.componentName}  with name: ${this.componentData.name} and age ${this.componentData.age}`
     );
   }
 
