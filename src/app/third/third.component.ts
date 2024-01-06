@@ -1,22 +1,24 @@
-import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  template: '<div>{{ componentName }} Lifecycle Component</div>',
-  selector: 'app-third',
-  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './third.component.html',
-  styleUrl: './third.component.css',
+  standalone: true,
+  template:
+    '<div>{{ componentName }} Lifecycle Component - {{ componentData }}</div>',
+  selector: 'app-third',
 })
 export class ThirdComponent implements OnInit, OnDestroy {
+  @Input() componentData: string = '';
   componentName: string = '';
 
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.componentName = this.elementRef.nativeElement.tagName.toLowerCase();
-    alert(`Entering ${this.componentName} Component`);
+    alert(
+      `Entering ${this.componentName} Component with data: ${this.componentData}`
+    );
   }
 
   ngOnDestroy(): void {
