@@ -1,4 +1,5 @@
 <router-outlet></router-outlet>
+
 <div class="all">
   <div class="grid">
     @for (products of this.products; track products.id) {
@@ -15,17 +16,13 @@
       <div class="name">
         <p>{{ products.name }}</p>
         <hr />
-        <p>{{ products.price | number }}</p>
+        <p>{{ products.price }}</p>
       </div>
       <div class="action">
-        <!-- <button [routerLink]="['cart']">Add to card</button> -->
-        <a
-          [routerLink]="['cart']"
-          [queryParams]="{ id: products.id }"
-          queryParamsHandling="merge"
-        >
-          Add to card
-        </a>
+        <div>
+          <p>{{ products.quantity }}</p>
+          <!-- <app-increment (increment)="onIncrement($event)"></app-increment> -->
+        </div>
       </div>
     </div>
     }

@@ -1,5 +1,10 @@
 import { Component, ElementRef, OnInit, OnDestroy, Input } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 
 export class Person {
   name: string;
@@ -11,26 +16,28 @@ export class Person {
   }
 }
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterModule],
   standalone: true,
   template:
-    '<div>{{ componentName }} Lifecycle Component - {{ componentData.name }} - {{ componentData.age }}</div>',
+    '<div>{{ componentName }}  - {{ componentData.name }} - {{ componentData.age }}</div>',
   selector: 'Practice',
 })
 export class ThirdComponent implements OnInit, OnDestroy {
   @Input() componentData: Person = new Person('', 0);
   componentName: string = '';
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    let queryparam = this.route.snapshot.queryParamMap.get('status');
+    console.log(queryparam);
     this.componentName = this.elementRef.nativeElement.tagName.toLowerCase();
-    alert(
+    /*  alert(
       `Entering ${this.componentName}  with name: ${this.componentData.name} and age ${this.componentData.age}`
-    );
+    ); */
   }
 
   ngOnDestroy(): void {
-    alert(`Leaving ${this.componentName} Component`);
+    // alert(`Leaving ${this.componentName} Component`);
   }
 }

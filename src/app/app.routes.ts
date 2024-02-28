@@ -8,6 +8,11 @@ export const routes: Routes = [
       import('./second/second.component').then((mod) => mod.SecondComponent),
   },
   {
+    path: 'cart',
+    loadComponent: () =>
+      import('./cart/cart.component').then((mod) => mod.CartComponent),
+  },
+  {
     path: 'third',
     loadComponent: () =>
       import('./third/third.component').then((mod) => mod.ThirdComponent),
