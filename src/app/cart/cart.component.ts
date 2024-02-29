@@ -24,7 +24,7 @@ export const productStore = createStore(
 productStore.subscribe((state) => {
   console.log(state);
 });
-// productStore.update((state) => state);
+productStore.update((state) => state);
 
 productStore.subscribe((state) => {
   for (let product of state.product || []) {
@@ -54,3 +54,7 @@ export class CartComponent extends AppComponent {
   productStore.update()
   
 }
+
+// 
+// 
+// 
