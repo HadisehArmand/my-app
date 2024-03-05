@@ -1,33 +1,6 @@
 <router-outlet></router-outlet>
 <div class="all">
   <div class="grid">
-    @for (products of this.products; track products.id) {
-
-    <div class="card">
-      <div class="image">
-        <img
-          [src]="products.image"
-          [alt]="products.name"
-          width="300"
-          height="280"
-        />
-      </div>
-      <div class="name">
-        <p>{{ products.name }}</p>
-        <hr />
-        <p>{{ products.price | number }}</p>
-      </div>
-      <div class="action">
-        <!-- <button [routerLink]="['cart']">Add to card</button> -->
-        <a
-          [routerLink]="['cart']"
-          [queryParams]="{ id: products.id }"
-          queryParamsHandling="merge"
-        >
-          Add to card
-        </a>
-      </div>
-    </div>
-    }
+    <button (click)="goToCart()">Go to Cart</button>
   </div>
 </div>

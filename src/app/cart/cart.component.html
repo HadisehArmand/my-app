@@ -10,7 +10,7 @@
           [src]="products.image"
           [alt]="products.name"
           width="300"
-          height="280"
+          height="240"
         />
       </div>
       <div class="name">
@@ -20,11 +20,33 @@
       </div>
       <div class="action">
         <div>
-          <p>{{ products.quantity }}</p>
-          <!-- <app-increment (increment)="onIncrement($event)"></app-increment> -->
+          <p>Quantity:{{ products.quantity }}</p>
+          <p>Price:{{ getTotalPrice(products) }}</p>
+          <button (click)="increaseQuantity(products.id)">+</button>
+          <button (click)="decreaseQuantity(products.id)">-</button>
         </div>
       </div>
     </div>
     }
+    <div class="summary">
+      <div class="summary-card">
+        <h2>Summary</h2>
+        <div></div>
+        @for (product of this.products; track product.id){ @if (product.quantity
+        > 0) {
+        <p>
+          Name : {{ product.name }} - Quantity : {{ product.quantity }} - Total
+          Price: {{ getTotalPrice(product) }}
+        </p>
+        <hr />
+        } }
+      </div>
+    </div>
+    <div class="summary">
+      <div class="summary-card">
+        <h1>Total Price</h1>
+        <p>{{ getTotalPriceForAllProducts() }}</p>
+      </div>
+    </div>
   </div>
 </div>
